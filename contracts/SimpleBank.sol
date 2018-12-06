@@ -44,6 +44,7 @@ contract SimpleBank {
     // allows function to run locally/off blockchain
     function balance() public view returns (uint) {
         /* Get the balance of the sender of this transaction */
+        require(enrolled[msg.sender] == true);
         return balances[msg.sender];
     }
 
@@ -64,6 +65,7 @@ contract SimpleBank {
     function deposit() public payable returns (uint) {
         /* Add the amount to the user's balance, call the event associated with a deposit,
           then return the balance of the user */
+        require(enrolled[msg.sender] == true);
         balances[msg.sender] += msg.value;
         emit LogDepositMade(msg.sender, msg.value);
         return balances[msg.sender];
