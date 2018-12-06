@@ -26,7 +26,7 @@ contract SimpleBank {
 
     /* Create an event called LogWithdrawal */
     /* Add 3 arguments for this event, an accountAddress, withdrawAmount and a newBalance */
-    event LogWithdrawl(address accountAddress, uint withdrawAmount, uint newBalance);
+    event LogWithdrawal(address accountAddress, uint withdrawAmount, uint newBalance);
 
     //
     // Functions
@@ -81,7 +81,7 @@ contract SimpleBank {
            return the user's balance.*/
         require(withdrawAmount <= balances[msg.sender]);
         balances[msg.sender] -= withdrawAmount;
-        emit LogWithdrawl(msg.sender, withdrawAmount, balances[msg.sender]);
+        emit LogWithdrawal(msg.sender, withdrawAmount, balances[msg.sender]);
         msg.sender.transfer(withdrawAmount);
         return balances[msg.sender];
     }
